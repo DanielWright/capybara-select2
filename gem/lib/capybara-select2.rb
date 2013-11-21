@@ -16,14 +16,14 @@ module Capybara
       select2_container.find('.select2-choice').click
 
       if options.key? :search
-        find(:xpath, '//body').find('input.select2-input').set value
+        find(:xpath, '//body').find('.select2-drop-active input.select2-input').set value
         page.execute_script '$("input.select2-input:visible").keyup();'
         drop_container = '.select2-results'
       else
         drop_container = '.select2-drop'
       end
 
-      find(:xpath, '//body').find("#{drop_container} li", text: value).click
+      find(:xpath, '//body').find(".select2-drop-active .select2-results li", text: value).click
     end
 
     def select2_ajax(value, options = {})
